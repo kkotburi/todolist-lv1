@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Todo from "./components/Todo";
 import Button from "./components/Button";
@@ -22,7 +22,7 @@ const App = () => {
 
   // 추가 button
   const clickAddButtonHandler = () => {
-    // 1. 새로운 형태의 객체 생성
+    // 새로운 형태의 객체 생성
     const newTodo = {
       id: todolist.length + 1,
       title,
@@ -30,11 +30,23 @@ const App = () => {
       done: false,
     };
 
-    // 2. 배열에 추가
+    // 배열에 추가
     setTodoList([...todolist, newTodo]);
 
     setTitle("");
     setContent("");
+
+    // data 저장
+    // 기존 data
+    let storedData = localStorage.getItem("myData");
+    let todoArray = [];
+    // 기존 data가 존재할 경우
+    if (storedData !== null) {
+      todoArray = JSON.parse(storedData);
+    }
+    // 새 data 추가
+    todoArray.push(newTodo);
+    localStorage.setItem("myData", JSON.stringify(todoArray));
   };
 
   // 삭제 button
@@ -50,13 +62,6 @@ const App = () => {
     );
     setTodoList(newTodolist);
   };
-
-  // 완료 button 'done'
-  // const clickDoneButtonHandler = (done) => {
-  //   const isDone = done ? false : true;
-  //   console.log(isDone);
-  //   setDone("취소");
-  // };
 
   // 완료 button 'count'
   // const [count, setCount] = useState(0);
@@ -87,6 +92,7 @@ const App = () => {
               ""
             ) : (
               <Todo
+                save={localStorage.getItem("title")}
                 key={todo.id}
                 todo={todo}
                 removeFunction={clickRemoveButtonHandler}
@@ -116,5 +122,3 @@ const App = () => {
 };
 
 export default App;
-
-// <br /> 사용 금지
