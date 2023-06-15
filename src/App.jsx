@@ -45,11 +45,10 @@ const App = () => {
 
   // 완료 button
   const clickDoneButtonHandler = (id) => {
-    setTodoList(
-      todolist.map((todo) =>
-        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-      )
+    const newTodolist = todolist.map((todo) =>
+      todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
     );
+    setTodoList(newTodolist);
   };
 
   // 완료 button 'done'
@@ -81,16 +80,36 @@ const App = () => {
         <Button addFunction={clickAddButtonHandler}>추가</Button>
       </div>
       <div className="body">
-        {todolist.map((todo) => {
-          return (
-            <Todo
-              key={todo.id}
-              todo={todo}
-              removeFunction={clickRemoveButtonHandler}
-              doneFunction={clickDoneButtonHandler}
-            />
-          );
-        })}
+        <h2>working</h2>
+        <div className="todo">
+          {todolist.map((todo) => {
+            return todo.isDone ? (
+              ""
+            ) : (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                removeFunction={clickRemoveButtonHandler}
+                doneFunction={clickDoneButtonHandler}
+              />
+            );
+          })}
+        </div>
+        <h2>done</h2>
+        <div className="todo">
+          {todolist.map((todo) => {
+            return todo.isDone ? (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                removeFunction={clickRemoveButtonHandler}
+                doneFunction={clickDoneButtonHandler}
+              />
+            ) : (
+              ""
+            );
+          })}
+        </div>
       </div>
     </div>
   );

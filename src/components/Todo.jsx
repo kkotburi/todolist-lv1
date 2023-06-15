@@ -1,6 +1,6 @@
 const Todo = ({ todo, todo: { isDone }, removeFunction, doneFunction }) => {
   return (
-    <div className="todo">
+    <div className={isDone ? "todo-done" : "todo-working"}>
       <div className="todo-title">{todo.title}</div>
       <div className="todo-content">{todo.content}</div>
       <div className="todo-button">
