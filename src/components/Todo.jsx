@@ -1,4 +1,4 @@
-const Todo = ({ todo, removeFunction }) => {
+const Todo = ({ todo, todo: { isDone }, removeFunction, doneFunction }) => {
   return (
     <div className="todo">
       <div className="todo-title">{todo.title}</div>
@@ -10,7 +10,12 @@ const Todo = ({ todo, removeFunction }) => {
         >
           삭제
         </button>
-        <button className="todo-button-done">완료</button>
+        <button
+          className="todo-button-done"
+          onClick={() => doneFunction(todo.id)}
+        >
+          {isDone ? "취소" : "완료"}
+        </button>
       </div>
     </div>
   );
