@@ -91,7 +91,7 @@ const App = () => {
           {todolist.map((todo) => {
             if (todo.isDone === false) {
               return (
-                <div className="todo-working">
+                <div key={todo.id} className="todo-working">
                   <Todo todo={todo} />
                   <div className="todo-button">
                     <Remove
@@ -114,7 +114,7 @@ const App = () => {
           {todolist.map((todo) => {
             if (todo.isDone === true) {
               return (
-                <div className="todo-done">
+                <div key={todo.id} className="todo-done">
                   <Todo todo={todo} />
                   <div className="todo-button">
                     <Remove
