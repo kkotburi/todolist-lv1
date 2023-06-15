@@ -15,4 +15,4 @@ This renders the todo done or removed based on the state of 'isDone'.
 This will render the 'remove' of the Todo.
 
 `Todo.jsx`
-This is just a file that 'components' the 'title' and content of the Todo.
+This is just a file that components the 'title' and 'content' of the Todo.
