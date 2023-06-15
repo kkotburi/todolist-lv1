@@ -1,7 +1,7 @@
-const Add = ({ addFunction }) => {
+const Add = ({ addFunction, children }) => {
   return (
     <button className="add-button" onClick={addFunction}>
-      추가
+      {children}
     </button>
   );
 };
