@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-### components
+### ./src/components/
 
 `Add.jsx`
 This provides a list view of the values entered by the user when the 'Add' button is pressed.
