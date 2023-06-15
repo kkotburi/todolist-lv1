@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import Todo from "./components/Todo";
-import Button from "./components/Button";
+import Input from "./components/Input";
+import Add from "./components/Add";
+import Working from "./components/Working";
+import Done from "./components/Done";
 
 const App = () => {
   const [todolist, setTodoList] = useState([
@@ -22,19 +24,31 @@ const App = () => {
 
   // 추가 button
   const clickAddButtonHandler = () => {
-    // 1. 새로운 형태의 객체 생성
+    // 새로운 형태의 객체 생성
     const newTodo = {
       id: todolist.length + 1,
       title,
       content,
-      done: false,
+      isDone: false,
     };
 
-    // 2. 배열에 추가
+    // 배열에 추가
     setTodoList([...todolist, newTodo]);
 
     setTitle("");
     setContent("");
+
+    // // data 저장
+    // // 기존 data
+    // let storedData = localStorage.getItem("myData");
+    // let todoArray = [];
+    // // 기존 data가 존재할 경우
+    // if (storedData !== null) {
+    //   todoArray = JSON.parse(storedData);
+    // }
+    // // 새 data 추가
+    // todoArray.push(newTodo);
+    // localStorage.setItem("myData", JSON.stringify(todoArray));
   };
 
   // 삭제 button
@@ -51,17 +65,9 @@ const App = () => {
     setTodoList(newTodolist);
   };
 
-  // 완료 button 'done'
-  // const clickDoneButtonHandler = (done) => {
-  //   const isDone = done ? false : true;
-  //   console.log(isDone);
-  //   setDone("취소");
-  // };
-
   // 완료 button 'count'
   // const [count, setCount] = useState(0);
   // const [done, setDone] = useState("완료");
-
   // const clickDoneButtonHandler = (count) => {
   //   const plusCount = count + 1;
   //   setCount(plusCount);
@@ -72,42 +78,44 @@ const App = () => {
 
   return (
     <div className="app">
-      <div className="input">
-        <div>
-          제목:&nbsp; <input value={title} onChange={titleChangeHander} />
-          내용:&nbsp; <input value={content} onChange={contentChangeHander} />
-        </div>
-        <Button addFunction={clickAddButtonHandler}>추가</Button>
+      <div className="header">
+        <Input
+          title={title}
+          titleFunction={titleChangeHander}
+          content={content}
+          contentFunction={contentChangeHander}
+        />
+        <Add addFunction={clickAddButtonHandler} />
       </div>
       <div className="body">
         <h2>working</h2>
         <div className="todo">
           {todolist.map((todo) => {
-            return todo.isDone ? (
-              ""
-            ) : (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                removeFunction={clickRemoveButtonHandler}
-                doneFunction={clickDoneButtonHandler}
-              />
-            );
+            if (todo.isDone === false) {
+              return (
+                <Working
+                  key={todo.id}
+                  todo={todo}
+                  removeFunction={clickRemoveButtonHandler}
+                  doneFunction={clickDoneButtonHandler}
+                />
+              );
+            }
           })}
         </div>
         <h2>done</h2>
         <div className="todo">
           {todolist.map((todo) => {
-            return todo.isDone ? (
-              <Todo
-                key={todo.id}
-                todo={todo}
-                removeFunction={clickRemoveButtonHandler}
-                doneFunction={clickDoneButtonHandler}
-              />
-            ) : (
-              ""
-            );
+            if (todo.isDone === true) {
+              return (
+                <Done
+                  key={todo.id}
+                  todo={todo}
+                  removeFunction={clickRemoveButtonHandler}
+                  doneFunction={clickDoneButtonHandler}
+                />
+              );
+            }
           })}
         </div>
       </div>
@@ -116,5 +124,3 @@ const App = () => {
 };
 
 export default App;
-
-// <br /> 사용 금지

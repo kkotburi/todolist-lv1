@@ -1,13 +1,11 @@
 .app {
-  width: 1000px;
+  width: 800px;
   margin: 0px auto 0px auto;
 }
 
-.input {
+.header {
   height: 100px;
-
   background-color: rgb(255, 248, 227);
-  border-radius: 10px;
 
   display: flex;
   justify-content: center;
@@ -15,31 +13,26 @@
 }
 
 .todo {
-  gap: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.todo-working,
+.todo-done {
+  height: 100px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .todo-working {
-  height: 100px;
-
-  border: 3px solid plum;
-  border-radius: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  border: 2.5px solid plum;
 }
 
 .todo-done {
-  height: 100px;
-
-  border: 3px solid rgb(145, 224, 211);
-  border-radius: 10px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  border: 2.5px solid rgb(145, 224, 211);
 }

@@ -1,6 +1,6 @@
-const Todo = ({ todo, todo: { isDone }, removeFunction, doneFunction }) => {
+const Working = ({ todo, removeFunction, doneFunction }) => {
   return (
-    <div className={isDone ? "todo-done" : "todo-working"}>
+    <div className="todo-working">
       <div className="todo-title">{todo.title}</div>
       <div className="todo-content">{todo.content}</div>
       <div className="todo-button">
@@ -14,11 +14,11 @@ const Todo = ({ todo, todo: { isDone }, removeFunction, doneFunction }) => {
           className="todo-button-done"
           onClick={() => doneFunction(todo.id)}
         >
-          {isDone ? "취소" : "완료"}
+          완료
         </button>
       </div>
     </div>
   );
 };
 
-export default Todo;
+export default Working;
