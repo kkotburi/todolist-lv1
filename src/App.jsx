@@ -4,6 +4,7 @@ import Add from "./components/Add";
 import Todo from "./components/Todo";
 import Remove from "./components/Remove";
 import Done from "./components/Done";
+import Input from "./components/Input";
 
 const App = () => {
   const [todolist, setTodoList] = useState([
@@ -78,30 +79,34 @@ const App = () => {
 
   return (
     <div className="app">
+      <h2 className="subject">Todo List</h2>
       <div className="header">
-        <div className="input">
-          제목:&nbsp; <input value={title} onChange={titleChangeHander} />
-          내용:&nbsp; <input value={content} onChange={contentChangeHander} />
-        </div>
-        <Add addFunction={clickAddButtonHandler}>추가</Add>
+        {/* 질문 : Input을 component로 만드는 게 좋은가요? */}
+        <Input
+          title={title}
+          titleChangeHander={titleChangeHander}
+          content={content}
+          contentChangeHander={contentChangeHander}
+        />
+        <Add addFunction={clickAddButtonHandler}>Add</Add>
       </div>
       <div className="body">
-        <h2>Working</h2>
+        <h3>✗. Working</h3>
         <div className="list">
           {todolist.map((todo) => {
             if (todo.isDone === false) {
               return (
-                <div key={todo.id} className="todo-working">
+                <div key={todo.id} className="working">
                   <Todo todo={todo} />
-                  <div className="todo-button">
+                  <div className="button">
                     <Remove
                       todo={todo}
                       removeFunction={clickRemoveButtonHandler}
                     >
-                      삭제
+                      delete
                     </Remove>
                     <Done todo={todo} doneFunction={clickDoneButtonHandler}>
-                      완료
+                      done
                     </Done>
                   </div>
                 </div>
@@ -109,22 +114,22 @@ const App = () => {
             }
           })}
         </div>
-        <h2>Done</h2>
+        <h3>✓. Done</h3>
         <div className="list">
           {todolist.map((todo) => {
             if (todo.isDone === true) {
               return (
-                <div key={todo.id} className="todo-done">
+                <div key={todo.id} className="done">
                   <Todo todo={todo} />
-                  <div className="todo-button">
+                  <div className="button">
                     <Remove
                       todo={todo}
                       removeFunction={clickRemoveButtonHandler}
                     >
-                      삭제
+                      delete
                     </Remove>
                     <Done todo={todo} doneFunction={clickDoneButtonHandler}>
-                      취소
+                      cancle
                     </Done>
                   </div>
                 </div>

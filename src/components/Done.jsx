@@ -1,6 +1,9 @@
-const Done = ({ todo, doneFunction, children }) => {
+const Done = ({ todo, todo: { isDone }, doneFunction, children }) => {
   return (
-    <button className="done-button" onClick={() => doneFunction(todo.id)}>
+    <button
+      className={isDone ? "cancle-button" : "done-button"}
+      onClick={() => doneFunction(todo.id)}
+    >
       {children}
     </button>
   );
