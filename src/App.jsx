@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Add from "./components/Add";
-import Todo from "./components/Todo";
-import Remove from "./components/Remove";
-import Done from "./components/Done";
+import Button from "./components/Button";
 import Input from "./components/Input";
+import Todo from "./components/Todo";
 
 const App = () => {
   const [todolist, setTodoList] = useState([
@@ -25,7 +23,6 @@ const App = () => {
 
   // 추가 button
   const clickAddButtonHandler = () => {
-    // 새로운 형태의 객체 생성
     const newTodo = {
       id: todolist.length + 1,
       title,
@@ -38,22 +35,10 @@ const App = () => {
 
     setTitle("");
     setContent("");
-
-    // // data 저장
-    // // 기존 data
-    // let storedData = localStorage.getItem("myData");
-    // let todoArray = [];
-    // // 기존 data가 존재할 경우
-    // if (storedData !== null) {
-    //   todoArray = JSON.parse(storedData);
-    // }
-    // // 새 data 추가
-    // todoArray.push(newTodo);
-    // localStorage.setItem("myData", JSON.stringify(todoArray));
   };
 
   // 삭제 button
-  const clickRemoveButtonHandler = (id) => {
+  const clickDeleteButtonHandler = (id) => {
     const newTodolist = todolist.filter((todo) => todo.id !== id);
     setTodoList(newTodolist);
   };
@@ -66,29 +51,21 @@ const App = () => {
     setTodoList(newTodolist);
   };
 
-  // 완료 button 'count'
-  // const [count, setCount] = useState(0);
-  // const [done, setDone] = useState("완료");
-  // const clickDoneButtonHandler = (count) => {
-  //   const plusCount = count + 1;
-  //   setCount(plusCount);
-  //   console.log(plusCount);
-  //   const isDone = count % 2 === 0 ? "취소" : "완료";
-  //   setDone(isDone);
-  // };
-
   return (
     <div className="app">
       <h2 className="subject">Todo List</h2>
       <div className="header">
-        {/* 질문 : Input을 component로 만드는 게 좋은가요? */}
         <Input
           title={title}
           titleChangeHander={titleChangeHander}
           content={content}
           contentChangeHander={contentChangeHander}
         />
-        <Add addFunction={clickAddButtonHandler}>Add</Add>
+        <Button
+          className={"add-button"}
+          onClick={clickAddButtonHandler}
+          title="Add"
+        />
       </div>
       <div className="body">
         <h3>✗. Working</h3>
@@ -99,15 +76,18 @@ const App = () => {
                 <div key={todo.id} className="working">
                   <Todo todo={todo} />
                   <div className="button">
-                    <Remove
+                    <Button
                       todo={todo}
-                      removeFunction={clickRemoveButtonHandler}
-                    >
-                      delete
-                    </Remove>
-                    <Done todo={todo} doneFunction={clickDoneButtonHandler}>
-                      done
-                    </Done>
+                      className={"button-delete"}
+                      onClick={clickDeleteButtonHandler}
+                      title="delete"
+                    />
+                    <Button
+                      todo={todo}
+                      className={"button-done"}
+                      onClick={clickDoneButtonHandler}
+                      title="done"
+                    />
                   </div>
                 </div>
               );
@@ -122,15 +102,18 @@ const App = () => {
                 <div key={todo.id} className="done">
                   <Todo todo={todo} />
                   <div className="button">
-                    <Remove
+                    <Button
                       todo={todo}
-                      removeFunction={clickRemoveButtonHandler}
-                    >
-                      delete
-                    </Remove>
-                    <Done todo={todo} doneFunction={clickDoneButtonHandler}>
-                      cancle
-                    </Done>
+                      className={"button-delete"}
+                      onClick={clickDeleteButtonHandler}
+                      title="delete"
+                    />
+                    <Button
+                      todo={todo}
+                      className={"button-cancle"}
+                      onClick={clickDoneButtonHandler}
+                      title="cancle"
+                    />
                   </div>
                 </div>
               );

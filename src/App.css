@@ -116,9 +116,9 @@
   align-items: center;
 }
 
-.remove-button,
-.cancle-button,
-.done-button {
+.button-delete,
+.button-done,
+.button-cancle {
   font-weight: 600;
   background-color: rgba(0, 0, 0, 0);
 
@@ -132,17 +132,17 @@
   cursor: pointer;
 }
 
-.remove-button {
+.button-delete {
   color: rgba(170, 136, 33, 0.74);
   background-color: rgba(224, 187, 75, 0.1);
 }
 
-.cancle-button {
+.button-done {
   color: rgb(170, 136, 33);
   background-color: rgba(221, 160, 221, 0.15);
 }
 
-.done-button {
+.button-cancle {
   color: rgb(170, 136, 33);
   background-color: rgba(145, 224, 211, 0.15);
 }
