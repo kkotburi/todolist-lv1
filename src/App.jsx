@@ -94,7 +94,7 @@ const App = () => {
         <h3>✗. Working</h3>
         <div className="list">
           {todolist.map((todo) => {
-            if (todo.isDone === false) {
+            if (!todo.isDone) {
               return (
                 <div key={todo.id} className="working">
                   <Todo todo={todo} />
@@ -117,7 +117,7 @@ const App = () => {
         <h3>✓. Done</h3>
         <div className="list">
           {todolist.map((todo) => {
-            if (todo.isDone === true) {
+            if (todo.isDone) {
               return (
                 <div key={todo.id} className="done">
                   <Todo todo={todo} />
