@@ -6,8 +6,18 @@ import Todo from "./components/Todo";
 
 const App = () => {
   const [todolist, setTodoList] = useState([
-    { id: 1, title: "algorithm 학습", content: "최빈값 구하기", isDone: false },
-    { id: 2, title: "TIL 작성", content: "2023년 6월 14일", isDone: true },
+    {
+      id: 1,
+      title: "algorithm 학습",
+      content: "최빈값 구하기",
+      isDone: false,
+    },
+    {
+      id: 2,
+      title: "TIL 작성",
+      content: "2023년 6월 14일",
+      isDone: true,
+    },
   ]);
 
   const [title, setTitle] = useState("");
